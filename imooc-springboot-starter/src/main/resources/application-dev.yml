@@ -1,0 +1,6 @@
+server:
+  port: 8090
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启mybatis的日志实现，可以在控制台打印输入sql语句

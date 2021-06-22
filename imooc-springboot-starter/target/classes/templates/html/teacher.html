@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+    Hello <span th:text="慕课网"></span>
+    <br/>
+    Hello <span th:text="${there}"></span>
+    <br/>
+    <br/>
+
+    <input th:value="${there}">
+    <br/>
+    <!-- 判断字符串是否为空 -->
+    <span th:text="${#strings.isEmpty(there)}"></span>
+    <br/>
+    <!-- 判断字符串是否包含指定的字符 -->
+    <span th:text="${#strings.contains(there, 'ac')}"></span>
+    <br/>
+    <!-- 打印参数字符串的长度 -->
+    <span th:text="${#strings.length(there)}"></span>
+    <br/>
+    <!-- 判断字符串以什么开头 -->
+    <span th:text="${#strings.startsWith(there, 'J')}"></span>
+    <br/>
+    <!-- 判断字符串以什么结尾 -->
+    <span th:text="${#strings.endsWith(there, 'k')}"></span>
+    <br/><br/>
+
+
+    默认展示时间日期：<span th:text="${birthday}"></span>
+    <br/>
+    默认格式化日期：<span th:text="${#dates.format(birthday)}"></span>
+    <br/>
+    指定格式化日期：<span th:text="${#dates.format(birthday, 'yyyy-MM-dd hh:mm:ss')}"></span>
+    <br/><br/>
+
+
+    <span th:if="${sex == 0}">
+        女
+    </span>
+    <span th:if="${sex == 1}">
+        男
+    </span>
+    <br/><br/>
+
+    <span th:switch="${sex}">
+        <span th:case="1">
+            男
+        </span>
+        <span th:case="0">
+            女
+        </span>
+        <span th:case="*">
+            未知
+        </span>
+    </span>
+    <br/><br/>
+    <br/><br/>
+
+
+    <span th:each="str,status : ${myList}">
+        输出：<span th:text="${str}"></span><br/>
+        count：<span th:text="${status.count}"></span><br/>
+        index：<span th:text="${status.index}"></span><br/>
+        size：<span th:text="${status.size}"></span><br/>
+        first：<span th:text="${status.first}"></span><br/>
+        last：<span th:text="${status.last}"></span><br/>
+        odd：<span th:text="${status.odd}"></span><br/>
+        even：<span th:text="${status.even}"></span><br/>
+        last：<span th:text="${status.last}"></span><br/>
+    </span>
+    <br/><br/>
+
+    <span th:each="attr : ${myMap}">
+        <span th:text="${attr}"></span>
+        <span th:text="${attr.key}"></span>
+        <span th:text="${attr.value}"></span>
+    </span>
+
+    <!--<br/><br/>-->
+    <!--<span th:text="${#request.getAttribute('englishName')}"></span>-->
+    <!--<br/>-->
+    <!--<span th:text="${#session.getAttribute('userToken')}"></span>-->
+
+</body>
+</html>

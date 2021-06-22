@@ -1,0 +1,68 @@
+#server:
+#  port: 8090
+
+#server.port.xxx.yyy.zzz
+
+app:
+  name:
+    xxx:
+      yyy:
+        zzz: imooc
+
+self:
+  custom:
+    config:
+      sdkSecrect: abc123
+      host: https://www.imooc.com
+      port: ${server.port}
+
+spring:
+  profiles:
+    active: test
+  datasource:                                   # 数据源相关的配置节点
+    type: com.zaxxer.hikari.HikariDataSource    # 指定数据源的类型 HikariDataSource
+#    type: com.alibaba.druid.pool.DruidDataSource  # 引入自定义的druid数据源
+    driver-class-name: com.mysql.jdbc.Driver    # mysql/MariaDB 驱动
+    url: jdbc:mysql://localhost:3306/imooc-springboot-learn?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    username: root
+    password: root
+    hikari:
+      connection-timeout: 30000       # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 默认:30秒
+      minimum-idle: 5                 # 最小连接数
+      maximum-pool-size: 20           # 最大连接数
+      auto-commit: true               # 自动提交
+      idle-timeout: 600000            # 连接超时的最大时长（毫秒），超时则被释放（retired），默认:10分钟
+      pool-name: DateSourceHikariCP   # 连接池名字
+      max-lifetime: 1800000           # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms
+      connection-test-query: SELECT 1
+  servlet:
+    multipart:
+      max-file-size: 500KB  # 文件上传大小的限制，设置最大值，不能超过，否则报错
+      max-request-size: 2MB # 文件最大请求限制，用于批量
+  #  mvc:
+#    static-path-pattern: /abc/**
+  banner:
+    location: classpath:banner/banner.txt
+#    image:
+#      location: classpath:banner/cat.png
+#      pixelmode: block
+  thymeleaf:
+    prefix: classpath:/templates/html/
+    suffix: .html
+
+# MyBatis 相关的配置
+mybatis:
+  type-aliases-package: com.imooc.pojo        # 所有数据库表逆向后所一一映射的实体类 Entity/Bean/POJO
+  mapper-locations: classpath:mappers/*.xml   # 所有mapper映射的文件所在目录位置
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启mybatis的日志实现，可以在控制台打印输入sql语句
+# 通用mapper配置
+mapper:
+  mappers: com.imooc.my.mapper.MyMapper       # 所有Mapper都需要实现的接口
+  not-empty: false    # 在进行数据库操作的时候，判断一个属性是否为空的时候，是否需要自动追加部位空字符串的判断
+                      # username !=null 后面 不需要 username != ''
+  identity: MYSQL
+# 分页插件助手的配置
+pagehelper:
+  helper-dialect: mysql
+  support-methods-arguments: true
