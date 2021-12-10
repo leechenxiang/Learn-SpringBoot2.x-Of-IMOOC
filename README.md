@@ -1,6 +1,7 @@
 # Learn-SpringBoot2.x-Of-IMOOC
 
 目前已发布的相关实战课以及架构师课程如下：
+* SpringBoot2.x全新仿抖音短视频实战：https://coding.imooc.com/class/544.html
 * 架构师体系课程：https://class.imooc.com/sale/javaarchitect
 * 告别35岁瓶颈，转型项目管理：https://coding.imooc.com/class/476.html
 * SpringCloud体系化实战：https://coding.imooc.com/class/456.html
